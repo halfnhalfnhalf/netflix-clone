@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
+import Row from "@/components/Row";
 import requests from "@/utils/requests";
 
 interface Props {
@@ -31,13 +32,14 @@ export default async function Home() {
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         <Banner netflixOriginals={netflixOriginals} />
         <section>
-          {/* row */}
-          {/* row */}
-          {/* row */}
-          {/* row */}
-          {/* row */}
-          {/* row */}
-          {/* row */}
+          <Row title="Trending Now" movies={trendingNow} />
+          <Row title="Top Rated" movies={topRated} />
+          <Row title="Action Movies" movies={actionMovies} />
+          {/* My list */}
+          <Row title="Comedies" movies={comedyMovies} />
+          <Row title="Horror Movies" movies={horrorMovies} />
+          <Row title="Romance Movies" movies={romanceMovies} />
+          <Row title="Documentaries" movies={documentaries} />
         </section>
       </main>
       {/* modal */}
