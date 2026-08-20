@@ -27,7 +27,7 @@ export default async function Home() {
   } = await getData();
 
   return (
-    <div className="relative h-screen bg-linear-to-b from-gray-900/10 to-[#010511] lg:h-[140vh]">
+    <div className="relative h-screen bg-[linear-gradient(to_bottom,rgba(20,20,20,0)_0%,rgba(20,20,20,.15)_15%,rgba(20,20,20,.35)_29%,rgba(20,20,20,.58)_44%,#141414_68%,#141414_100%)] lg:h-[140vh]">
       <Header />
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         <Banner netflixOriginals={netflixOriginals} />
