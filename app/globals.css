@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 @layer base {
+  @supports not selector(::webkit-scrollbar) {
+    html {
+    @apply scrollbar-thumb-red-600 scrollbar-track-transparent;
+    }
+  }
+  
   body {
     @apply bg-[#141414] text-white overflow-x-hidden;
   }
