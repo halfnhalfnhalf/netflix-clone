@@ -1,7 +1,13 @@
+"use client";
+
+import { modalState } from "@/atoms/modalAtom";
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
 import Row from "@/components/Row";
+import useAuth from "@/hooks/useAuth";
 import requests from "@/utils/requests";
+import { useState } from "react";
+import { useRecoilValue } from "recoil";
 
 interface Props {
   netflixOriginals: Movie[];
@@ -14,32 +20,40 @@ interface Props {
   documentaries: Movie[];
 }
 
-export default async function Home() {
-  const {
-    netflixOriginals,
-    trendingNow,
-    topRated,
-    actionMovies,
-    comedyMovies,
-    horrorMovies,
-    romanceMovies,
-    documentaries,
-  } = await getData();
+export default function Home() {
+  const [movies, setMovies] = useState({
+    netflixOriginals: [],
+    trendingNow: [],
+    topRated: [],
+    actionMovies: [],
+    comedyMovies: [],
+    horrorMovies: [],
+    romanceMovies: [],
+    documentaries: [],
+  });
+  async function setData() {
+    setMovies(await getData());
+  }
+  setData();
+  const { loading } = useAuth();
+  const showModal = useRecoilValue(modalState);
+
+  if (loading) return null;
 
   return (
     <div className="relative h-screen bg-[linear-gradient(to_bottom,rgba(20,20,20,0)_0%,rgba(20,20,20,.15)_15%,rgba(20,20,20,.35)_29%,rgba(20,20,20,.58)_44%,#141414_68%,#141414_100%)] lg:h-[140vh]">
       <Header />
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
-        <Banner netflixOriginals={netflixOriginals} />
+        <Banner netflixOriginals={movies.netflixOriginals} />
         <section>
-          <Row title="Trending Now" movies={trendingNow} />
-          <Row title="Top Rated" movies={topRated} />
-          <Row title="Action Movies" movies={actionMovies} />
+          <Row title="Trending Now" movies={movies.trendingNow} />
+          <Row title="Top Rated" movies={movies.topRated} />
+          <Row title="Action Movies" movies={movies.actionMovies} />
           {/* My list */}
-          <Row title="Comedies" movies={comedyMovies} />
-          <Row title="Horror Movies" movies={horrorMovies} />
-          <Row title="Romance Movies" movies={romanceMovies} />
-          <Row title="Documentaries" movies={documentaries} />
+          <Row title="Comedies" movies={movies.comedyMovies} />
+          <Row title="Horror Movies" movies={movies.horrorMovies} />
+          <Row title="Romance Movies" movies={movies.romanceMovies} />
+          <Row title="Documentaries" movies={movies.documentaries} />
         </section>
       </main>
       {/* modal */}
