@@ -7,17 +7,17 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAyPsodRrOo1QQPtQe9nZgupG2cGKyJyF4",
-  authDomain: "netflix-clone-38b23.firebaseapp.com",
-  projectId: "netflix-clone-38b23",
-  storageBucket: "netflix-clone-38b23.firebasestorage.app",
-  messagingSenderId: "731246848236",
-  appId: "1:731246848236:web:adfcd730795ded00875dc9"
+  apiKey: "AIzaSyADsOY1jJAfo-6qJ04_QSV4sPZSG8mfbhw",
+  authDomain: "fir-clone-2-fce49.firebaseapp.com",
+  projectId: "fir-clone-2-fce49",
+  storageBucket: "fir-clone-2-fce49.firebasestorage.app",
+  messagingSenderId: "69762484857",
+  appId: "1:69762484857:web:3e056cc3147aeb017e62a8"
 };
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const db = getFirestore();
+const db = getFirestore(app);
 const auth = getAuth()
 
 export default app
