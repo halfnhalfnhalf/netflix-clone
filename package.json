@@ -15,7 +15,7 @@
     "@invertase/firestore-stripe-payments": "^0.0.8",
     "@mui/material": "^9.3.1",
     "@stripe/firestore-stripe-payments": "^0.0.6",
-    "firebase": "9.6.11",
+    "firebase": "^11.10.0",
     "jotai": "^2.20.2",
     "next": "16.3.1",
     "postcss": "^8.5.26",
