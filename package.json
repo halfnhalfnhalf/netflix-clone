@@ -35,5 +35,11 @@
     "tailwindcss": "^4.3.3",
     "tailwindcss-textshadow": "^2.1.3",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "protobufjs@7.6.6": true,
+    "protobufjs@6.11.6": true,
+    "unrs-resolver@1.12.2": true,
+    "@firebase/util@1.12.1": true
   }
 }
