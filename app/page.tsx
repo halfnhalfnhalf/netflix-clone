@@ -8,7 +8,7 @@ import Plans from "@/components/Plans";
 import Row from "@/components/Row";
 import useAuth from "@/hooks/useAuth";
 import useSubscription from "@/hooks/useSubscription";
-import { products } from "@/lib/stripe";
+import { fetchActiveProducts } from "@/lib/stripe";
 import requests from "@/utils/requests";
 import { Product } from "@invertase/firestore-stripe-payments";
 import { useAtomValue } from "jotai";
@@ -40,6 +40,7 @@ export default function Home() {
   const { loading, user } = useAuth();
   const showModal = useAtomValue(modalState);
   const subscription = useSubscription(user)
+  const [products, setProducts] = useState<Product[]>([]);
 
   async function setData() {
     setMovies(await getData());
@@ -47,6 +48,9 @@ export default function Home() {
 
   useEffect(() => {
     setData();
+    fetchActiveProducts().then((res) => {
+      if (res) setProducts(res);
+    });
   }, []);
 
   if (loading || subscription === null) return null;
