@@ -7,7 +7,7 @@ import {
   Product,
 } from "@invertase/firestore-stripe-payments";
 import app from "../firebase";
-import { getFunctions } from "firebase/functions";
+import { getFunctions, httpsCallable } from "firebase/functions";
 
 const payments = getStripePayments(app, {
   productsCollection: "products",
@@ -35,9 +35,19 @@ const loadCheckout = async (priceId: string) => {
   console.log("checkout attempt ended");
 };
 
-// const goToBillingPortal = async () => {
-//   const instance = getFunctions()
-// };
+const goToBillingPortal = async () => {
+  const instance = getFunctions(app, "us-central1");
+  const functionRef = httpsCallable(
+    instance,
+    "ext-firestore-stripe-payments-createPortalLink",
+  );
 
-export { loadCheckout, fetchActiveProducts };
+  await functionRef({
+    returnUrl: `${window.location.origin}/account`,
+  })
+    .then(({ data }: any) => window.location.assign(data.url))
+    .catch((error) => console.log(error.message));
+};
+
+export { loadCheckout, fetchActiveProducts, goToBillingPortal };
 export default payments;

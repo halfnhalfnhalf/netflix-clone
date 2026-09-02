@@ -14,16 +14,19 @@
     "@heroicons/react": "^2.2.0",
     "@invertase/firestore-stripe-payments": "^0.0.8",
     "@mui/material": "^9.3.1",
-    "@stripe/firestore-stripe-payments": "^0.0.6",
     "firebase": "^11.10.0",
+    "firebase-admin": "^14.3.0",
+    "firebase-tools": "^15.28.2",
     "jotai": "^2.20.2",
     "next": "16.3.1",
     "postcss": "^8.5.26",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-hook-form": "^7.85.0",
+    "react-hot-toast": "^2.6.0",
     "react-icons": "^5.7.0",
-    "react-player": "^3.4.0"
+    "react-player": "^3.4.0",
+    "stripe": "^22.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

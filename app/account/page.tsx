@@ -62,9 +62,9 @@ function Account() {
 
         <Membership />
 
-        <div className="mt-6 grid grid-cols-1 gap-x-4 border p-4 md:grid-cols-4 md:border-x-0 md:border-b-0 md:px-0 md:pb-0">
-          <h4>Plan Details</h4>
-          <div>{getProduct()}</div>
+        <div className="mt-6 grid grid-cols-1 gap-x-4 border p-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0 md:pb-0">
+          <h4 className="text-lg text-[gray]">Plan Details</h4>
+          <div className="col-span-2 font-medium">{getProduct()}</div>
           <p className="cursor-pointer text-blue-500 hover:underline md:text-right">Change plan</p>
         </div>
 

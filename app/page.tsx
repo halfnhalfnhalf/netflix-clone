@@ -1,12 +1,13 @@
 "use client";
 
-import { modalState } from "@/atoms/modalAtom";
+import { modalState, movieState } from "@/atoms/modalAtom";
 import Banner from "@/components/Banner";
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
 import Plans from "@/components/Plans";
 import Row from "@/components/Row";
 import useAuth from "@/hooks/useAuth";
+import useList from "@/hooks/useList";
 import useSubscription from "@/hooks/useSubscription";
 import { fetchActiveProducts } from "@/lib/stripe";
 import requests from "@/utils/requests";
@@ -39,8 +40,10 @@ export default function Home() {
   });
   const { loading, user } = useAuth();
   const showModal = useAtomValue(modalState);
-  const subscription = useSubscription(user)
+  const subscription = useSubscription(user);
   const [products, setProducts] = useState<Product[]>([]);
+  const movie = useAtomValue(movieState);
+  const list = useList(user?.uid);
 
   async function setData() {
     setMovies(await getData());
@@ -69,7 +72,7 @@ export default function Home() {
           <Row title="Trending Now" movies={movies.trendingNow} />
           <Row title="Top Rated" movies={movies.topRated} />
           <Row title="Action Movies" movies={movies.actionMovies} />
-          {/* My list */}
+          {list.length > 0 && <Row title="My List" movies={list} />}
           <Row title="Comedies" movies={movies.comedyMovies} />
           <Row title="Horror Movies" movies={movies.horrorMovies} />
           <Row title="Romance Movies" movies={movies.romanceMovies} />

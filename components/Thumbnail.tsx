@@ -1,9 +1,10 @@
 import { modalState, movieState } from "@/atoms/modalAtom";
+import { DocumentData } from "firebase/firestore";
 import { useAtom } from "jotai";
 import Image from "next/image";
 
 interface Props {
-  movie: Movie; // | DocumentData
+  movie: Movie | DocumentData;
 }
 
 function Thumbnail({ movie }: Props) {
